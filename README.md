@@ -1,48 +1,61 @@
-# Sector 01 — Checkpoint
+# Sector 01 — Tactical Operations
 
-A playable Arknights-inspired tower-defense prototype closely based on the supplied concept image. One industrial battlefield, five operators, and a complete 35-enemy mission.
+A playable anime chibi tower-defense game inspired by the supplied concept and Arknights-style tactical deployment. Three complete missions with empty starts, directional placement, class-specific tiles, blocking, armor, healing, skills, retreat/redeployment, and saved star ratings.
 
 ## Play
 
-- Click an operator portrait, then a teal tile to deploy. Keys 1–5 also select operators.
-- Ash, Bastion, and Kestrel begin deployed. Add Lumen and Suture with regenerating DP.
-- Select a deployed operator to inspect health, activate a charged skill (Q), or retreat.
-- Space pauses/resumes. Escape cancels selection or toggles pause.
-- The speed button cycles 1× / 2× / 3×. Audio starts muted; enable it in the bottom toolbar.
-- Keep enemies away from the blue exit. Defend against all 35 hostiles with at least one life remaining to win.
+1. Choose a mission and press **Begin Operation**. The battlefield starts empty; hostiles arrive after eight seconds.
+2. Select a portrait (or press 1–5), choose a valid tile, select a facing direction, then confirm. Ground operators block roads; ranged operators and medics use raised platforms.
+3. Selection slows the simulation to quarter speed. A bright gold grid shows attack range; mint shows healing range. Q activates a charged skill. Space pauses/resumes; Escape cancels selection.
+4. DP regenerates. Retreat refunds half the deployment cost and triggers a 25-second cooldown. Defeat triggers 35 seconds; subsequent deployments cost more.
+5. Clear every hostile while keeping at least one life. No breaches earns three stars. Best mission ratings persist locally on the device.
 
-## Run locally
+Use the toolbar for mission selection, route display, Japanese subtitles, Japanese voices, recorded sound effects, the manual, and fullscreen. Mobile play is landscape-only; portrait orientation pauses play and shows a rotate prompt. Fullscreen attempts orientation lock where the browser supports it. Desktop narrow panels retain a fitted landscape battlefield.
 
-Requires Node.js 22.13+.
+## Missions
 
-```
-npm ci
-npm run dev
-```
+| Operation | Enemies | Route and environment | Boss |
+|---|---:|---|---|
+| Nightwatch | 35 | Rainy midnight checkpoint, one choke point | The Warden, armored knight with enraged phase |
+| Pale Sanctuary | 40 | Frozen Gothic courtyard, winding road, periodic whiteouts | Frost Revenant, frost pulses slow nearby operators |
+| Cinder Works | 45 | Two foundry lanes converge, periodic furnace eruptions | Cinder Titan, hammer attacks splash nearby operators |
 
-Open the Local URL printed by the development server. The project uses the provided Vinext/Vite Sites starter.
+## Animation and audio
+
+The high-resolution painted chibi atlases use drawn idle/blink, anticipation, attack and recovery frames, registered to a fixed foot baseline. No bouncing or floating idle transform is applied. Enemy designs differ by biome. All three bosses have four-frame walk, attack and collapse sequences, readable attack telegraphs and an enraged phase. The results screen waits for the boss to fall. Operators follow targets visually without changing their chosen firing arc. Projectiles, slashes, impact particles and healing effects are drawn separately from the character sprites. Luminous red IN and blue DEFEND gates align with every route endpoint. Rain, snow, mist and embers animate independently.
+
+Audio uses local CC0 weapon/foley/ambient samples with level limits. No oscillator tones or browser speech synthesis are used. Twelve spoken Japanese AI voice lines are bundled locally: deployment and skill lines for each operator, operation start and victory. The VO control is independent of subtitles; effects duck under speech. The sound control mutes all audio. Dialogue was generated locally using Kokoro; no paid service or browser voice installation is required during play. See VOICE-ASSETS.md and the in-game voice credits for model, voice, license, and reproduction details.
+
+## Development
+
+Requires Node.js 22.13+. Uses the supplied Vinext/Vite Sites starter.
+
+    npm ci
+    npm run dev
+
+Open the Local URL printed by the server.
 
 ## Verification
 
-```
-node scripts/game-tests.mjs
-node node_modules/typescript/bin/tsc --noEmit
-npm run build
-```
+    node scripts/tactics-tests.mjs
+    node scripts/presentation-tests.mjs
+    node node_modules/typescript/bin/tsc --noEmit
+    npm run build
 
-The model tests exercise resource constraints, pause, retreat and redeployment cooldowns, skills, healing, damage, full victory and defeat, and restart. Browser checks cover visible map/card rendering, placement, skill controls, sound toggle, pause/resume, and results.
+Tests cover empty starts, ground/high-ground restrictions, two-step placement, facing arcs, deployment cost and cooldowns, pause, retreat, projectile damage on impact, defeat, healing, skills, boss encounters, hazards, full wins on all three missions, and clean restarts. Browser checks verified deployment, facing confirmation, five-operator combat, mission switching, saved completion stars, portrait guard and automatic pause on rotation, landscape layout, and absence of console errors.
 
-## Assets and implementation
+## Project files
 
-- `lib/game.mjs`: deterministic combat model and Canvas 2D renderer, separate from React HUD.
-- `app/page.tsx`: interactive HUD, roster, operator details, manual, and end screens.
-- `public/assets/battlefield.png`: generated clean background plate matching the supplied image.
-- `public/assets/operators.png`: generated transparent 5-column, 4-pose operator atlas.
-- `public/assets/enemies.png`: generated transparent 4-column, 2-row enemy animation atlas.
-- `public/assets/reference.png`: supplied reference, rendered through SVG viewports for the exact original portrait artwork.
+- components/TacticalGame.tsx — HUD, roster, mission selection, briefing, manual and result screens.
+- lib/missions.mjs — map routes, deployment tiles, operator statistics and firing arcs.
+- lib/battle.mjs — combat simulation.
+- lib/tactics.mjs — Canvas renderer, input, animation registration, particles and weather.
+- lib/audio.mjs — recorded-sample playback, Japanese voices, ducking and ambience.
+- lib/combat-renderer.mjs — gates, range previews, telegraphs and effects.
+- lib/visual-state.mjs — target-facing and animation states.
+- public/assets — all map, operator, enemy, boss, portrait and audio assets used in play.
+- MAP-PROMPTS.md, REVISION-ASSET-PROMPTS.md — built-in image generation briefs.
+- AUDIO-ASSETS.md, VOICE-ASSETS.md — audio provenance, licenses and delivered voice scripts.
+- COMBAT-ASSET-PROMPTS.md — final operator and boss sprite generation prompts.
 
-Animation includes sprite-based walking and attacks, idle breathing, recoil, hit flashes, death motion/fade, projectile trails, melee slashes, particles, floating damage/healing numbers, skill shockwaves, and deployment effects. Audio uses local Web Audio synthesis. No external asset host or API is required during play.
-
-This is a single-mission browser prototype with generated animation poses, not a pixel-for-pixel recreation of a full commercial game's animation system. All gameplay progress is per run; restarting resets the mission.
-
-See `ASSET-PROMPTS.md` for the built-in image-generation briefs.
+This is a three-mission browser game with original generated battle art and the supplied portrait artwork. It does not include the full commercial Arknights campaign, progression, collection system or original game's voice recordings.

@@ -1,0 +1,32 @@
+{
+  "snow1": {
+    "source": "footstep_snow_000.ogg",
+    "author": "Kenney",
+    "license": "CC0",
+    "duration": 0.374
+  },
+  "snow2": {
+    "source": "footstep_snow_002.ogg",
+    "author": "Kenney",
+    "license": "CC0",
+    "duration": 0.374
+  },
+  "metal": {
+    "source": "impactMetal_light_000.ogg",
+    "author": "Kenney",
+    "license": "CC0",
+    "duration": 0.351
+  },
+  "ice": {
+    "source": "impactGlass_medium_002.ogg",
+    "author": "Kenney",
+    "license": "CC0",
+    "duration": 0.543
+  },
+  "heavy": {
+    "source": "impactMetal_heavy_004.ogg",
+    "author": "Kenney",
+    "license": "CC0",
+    "duration": 0.134
+  }
+}

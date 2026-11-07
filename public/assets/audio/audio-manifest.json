@@ -1,0 +1,90 @@
+{
+  "shot": {
+    "file": "shot.wav",
+    "duration": 0.352,
+    "sampleRate": 44100,
+    "channels": 1,
+    "peak": 0.8,
+    "bytes": 31068
+  },
+  "slash": {
+    "file": "slash.wav",
+    "duration": 0.25,
+    "sampleRate": 44100,
+    "channels": 1,
+    "peak": 0.8,
+    "bytes": 22066
+  },
+  "impact": {
+    "file": "impact.wav",
+    "duration": 0.117,
+    "sampleRate": 44100,
+    "channels": 1,
+    "peak": 0.8,
+    "bytes": 10390
+  },
+  "heal": {
+    "file": "heal.wav",
+    "duration": 0.542,
+    "sampleRate": 44100,
+    "channels": 1,
+    "peak": 0.8,
+    "bytes": 47842
+  },
+  "deploy": {
+    "file": "deploy.wav",
+    "duration": 0.591,
+    "sampleRate": 44100,
+    "channels": 1,
+    "peak": 0.733,
+    "bytes": 52204
+  },
+  "step1": {
+    "file": "step1.wav",
+    "duration": 0.106,
+    "sampleRate": 44100,
+    "channels": 1,
+    "peak": 0.8,
+    "bytes": 9386
+  },
+  "step2": {
+    "file": "step2.wav",
+    "duration": 0.113,
+    "sampleRate": 44100,
+    "channels": 1,
+    "peak": 0.8,
+    "bytes": 9992
+  },
+  "death": {
+    "file": "death.wav",
+    "duration": 0.572,
+    "sampleRate": 44100,
+    "channels": 1,
+    "peak": 0.8,
+    "bytes": 50498
+  },
+  "warning": {
+    "file": "warning.wav",
+    "duration": 1.358,
+    "sampleRate": 44100,
+    "channels": 1,
+    "peak": 0.8,
+    "bytes": 119822
+  },
+  "latch": {
+    "file": "latch.wav",
+    "duration": 0.228,
+    "sampleRate": 44100,
+    "channels": 1,
+    "peak": 0.722,
+    "bytes": 20186
+  },
+  "ambience": {
+    "file": "ambience.wav",
+    "duration": 20.0,
+    "sampleRate": 44100,
+    "channels": 1,
+    "peak": 0.55,
+    "bytes": 1764044
+  }
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "key": "start",
+    "text": "作戦開始。各員、配置について。",
+    "voice": "jf_alpha",
+    "seconds": 2.969,
+    "sampleRate": 24000
+  },
+  {
+    "key": "ash",
+    "text": "アッシュ、配置につきます。",
+    "voice": "jf_alpha",
+    "seconds": 1.641,
+    "sampleRate": 24000
+  },
+  {
+    "key": "ash-skill",
+    "text": "一気に突破する！",
+    "voice": "jf_alpha",
+    "seconds": 1.417,
+    "sampleRate": 24000
+  },
+  {
+    "key": "bastion",
+    "text": "ここは俺に任せろ。",
+    "voice": "jm_kumo",
+    "seconds": 1.908,
+    "sampleRate": 24000
+  },
+  {
+    "key": "bastion-skill",
+    "text": "誰も通さない！",
+    "voice": "jm_kumo",
+    "seconds": 1.429,
+    "sampleRate": 24000
+  },
+  {
+    "key": "kestrel",
+    "text": "ケストレル、射撃位置についた。",
+    "voice": "jf_tebukuro",
+    "seconds": 2.643,
+    "sampleRate": 24000
+  },
+  {
+    "key": "kestrel-skill",
+    "text": "逃がさない。",
+    "voice": "jf_tebukuro",
+    "seconds": 1.012,
+    "sampleRate": 24000
+  },
+  {
+    "key": "lumen",
+    "text": "光よ、道を示せ。",
+    "voice": "jf_gongitsune",
+    "seconds": 2.356,
+    "sampleRate": 24000
+  },
+  {
+    "key": "lumen-skill",
+    "text": "闇を切り裂け！",
+    "voice": "jf_gongitsune",
+    "seconds": 1.503,
+    "sampleRate": 24000
+  },
+  {
+    "key": "suture",
+    "text": "大丈夫。すぐに治療する。",
+    "voice": "jf_nezumi",
+    "seconds": 2.399,
+    "sampleRate": 24000
+  },
+  {
+    "key": "suture-skill",
+    "text": "まだ諦めないで！",
+    "voice": "jf_nezumi",
+    "seconds": 1.514,
+    "sampleRate": 24000
+  },
+  {
+    "key": "victory",
+    "text": "作戦完了。全員、よくやった。",
+    "voice": "jf_alpha",
+    "seconds": 2.857,
+    "sampleRate": 24000
+  }
+]

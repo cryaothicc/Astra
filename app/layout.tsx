@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sector 01 — Checkpoint",
-  description: "Command five operators, hold the industrial checkpoint, and stop 35 hostiles in an animated tactical tower-defense game.",
+  title: "Sector 01 — Tactical Operations",
+  description: "Deploy five anime chibi operators across three atmospheric tactical-defense missions with directional combat, distinct bosses, and landscape mobile play.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
