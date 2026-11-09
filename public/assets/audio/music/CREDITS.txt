@@ -1,0 +1,41 @@
+SECTOR 01 - Instrumental soundtrack, revision 3
+
+MISSION SELECTION (menu.ogg)
+'The Restoration' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au
+https://www.scottbuckley.com.au/library/the-restoration/
+From the Monomyth album (2019).
+License: https://creativecommons.org/licenses/by/4.0/
+Complete composition retained. Silence/padding trimmed, level balanced,
+endpoints softened and encoded to Ogg Vorbis. No pitch or tempo changes.
+
+BATTLE MUSIC
+'Nightfall' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au
+night.ogg: https://www.scottbuckley.com.au/library/nightfall/
+
+'Tears of a Distant Sun' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au
+shrine.ogg: https://www.scottbuckley.com.au/library/tears-of-a-distant-sun/
+
+'The Encounter' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au
+foundry.ogg: https://www.scottbuckley.com.au/library/the-encounter/
+
+Scott Buckley license: https://creativecommons.org/licenses/by/4.0/
+Changes: digital silence/padding trimmed, global level balancing, short endpoint fades,
+and Ogg Vorbis encoding. Complete musical arrangements and stereo image preserved.
+No pitch, tempo or instrumentation changes. Attribution must remain with the game.
+
+RESULT CUES
+victory.ogg: "Sfx Triumphant Victory" - FiftySounds / Esther Garcia Gonzalez.
+https://www.fiftysounds.com/royalty-free-music/sfx-victory1.html
+defeat.ogg: "Sfx Final Defeat" - FiftySounds / Esther Garcia Gonzalez.
+https://www.fiftysounds.com/royalty-free-music/sfx-defeat1.html
+License: https://www.fiftysounds.com/music-license.html
+Terms: https://www.fiftysounds.com/terms-and-conditions.html
+These are licensed sound effects for synchronized use in the game, not CC0 assets.
+Credit is optional for these sound effects, but is provided voluntarily.
+Do not redistribute them as a standalone music/stock pack.
+Changes: silence/padding trim, global level balancing, endpoint smoothing and Ogg encoding.
+The complete composed orchestral cues are preserved; no pitch/tempo changes or remix.
+
+No franchise soundtrack recordings or new AI-generated music are included.
+Licenses apply to the specified audio recordings, not to the game as a whole.
+No artist endorsement is implied.

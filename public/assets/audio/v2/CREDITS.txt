@@ -1,0 +1,29 @@
+SECTOR 01 - Sample-based combat sound effects, revision 2
+
+Additional Sound FX by Will Leamon
+"Fleshy Fight Sounds" (2018), OGA-BY 3.0.
+Source: https://opengameart.org/content/fleshy-fight-sounds
+License: https://static.opengameart.org/OGA-BY-3.0.txt
+Used for impact1, impact2, arrow-hit, armor-hit, body-hit, boss-hit, boss-hit2.
+Modifications: silence trimming, mono conversion, resampling, peak normalization and fades.
+
+Some of the sounds in this project were created by ViRiX Dreamcore (David Mckee) www.soundcloud.com/virix
+"Magic SFX Sample" (2015), Creative Commons Attribution 3.0 Unported.
+Source: https://opengameart.org/content/magic-sfx-sample
+Author: https://soundcloud.com/virix
+License: https://creativecommons.org/licenses/by/3.0/
+Used for magic-cast, magic-hit, heal, boss-warning, gate-in, gate-out.
+Modifications: silence trimming, mono conversion, normalization, shortened tails and fades. gate-in and boss-warning reverse the source excerpt.
+
+"Battle Sound Effects" by artisticdude, submitted by Ogrebane, CC0 1.0.
+Source: https://opengameart.org/content/battle-sound-effects
+License: https://creativecommons.org/publicdomain/zero/1.0/
+Used for slash1, slash2 and shot. Modified by trimming, mono conversion, normalization and fades.
+
+"RPG Audio" by Kenney, CC0 1.0.
+Source: https://kenney.nl/assets/rpg-audio
+License: https://creativecommons.org/publicdomain/zero/1.0/
+Used for ui-select and deploy. Modified by trimming, mono conversion, normalization and fades.
+
+These licenses cover the specified audio assets; they do not license the game as a whole.
+No audio extracted from Arknights is included. No artist endorsement is implied.

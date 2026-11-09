@@ -1,86 +1,98 @@
 [
   {
     "key": "start",
-    "text": "作戦開始。各員、配置について。",
-    "voice": "jf_alpha",
-    "seconds": 2.969,
+    "text": "作戦開始！みんな、準備はいい？",
+    "voice": "VOICEVOX:四国めたん",
+    "styleId": 2,
+    "seconds": 3.04,
     "sampleRate": 24000
   },
   {
     "key": "ash",
-    "text": "アッシュ、配置につきます。",
-    "voice": "jf_alpha",
-    "seconds": 1.641,
+    "text": "アッシュ、いっくよ！",
+    "voice": "VOICEVOX:ずんだもん",
+    "styleId": 1,
+    "seconds": 2.261,
     "sampleRate": 24000
   },
   {
     "key": "ash-skill",
-    "text": "一気に突破する！",
-    "voice": "jf_alpha",
-    "seconds": 1.417,
+    "text": "一気に、突破するよ！",
+    "voice": "VOICEVOX:ずんだもん",
+    "styleId": 7,
+    "seconds": 1.803,
     "sampleRate": 24000
   },
   {
     "key": "bastion",
-    "text": "ここは俺に任せろ。",
-    "voice": "jm_kumo",
-    "seconds": 1.908,
+    "text": "ここは、俺に任せろ。",
+    "voice": "VOICEVOX:玄野武宏",
+    "styleId": 11,
+    "seconds": 1.685,
     "sampleRate": 24000
   },
   {
     "key": "bastion-skill",
-    "text": "誰も通さない！",
-    "voice": "jm_kumo",
-    "seconds": 1.429,
+    "text": "誰も、通さない！",
+    "voice": "VOICEVOX:玄野武宏",
+    "styleId": 11,
+    "seconds": 1.333,
     "sampleRate": 24000
   },
   {
     "key": "kestrel",
-    "text": "ケストレル、射撃位置についた。",
-    "voice": "jf_tebukuro",
-    "seconds": 2.643,
+    "text": "射撃準備、できたよ！",
+    "voice": "VOICEVOX:春日部つむぎ",
+    "styleId": 8,
+    "seconds": 1.92,
     "sampleRate": 24000
   },
   {
     "key": "kestrel-skill",
-    "text": "逃がさない。",
-    "voice": "jf_tebukuro",
-    "seconds": 1.012,
+    "text": "そこっ！逃がさないよ！",
+    "voice": "VOICEVOX:春日部つむぎ",
+    "styleId": 8,
+    "seconds": 1.515,
     "sampleRate": 24000
   },
   {
     "key": "lumen",
-    "text": "光よ、道を示せ。",
-    "voice": "jf_gongitsune",
-    "seconds": 2.356,
+    "text": "私の光で、照らすよ。",
+    "voice": "VOICEVOX:四国めたん",
+    "styleId": 2,
+    "seconds": 2.005,
     "sampleRate": 24000
   },
   {
     "key": "lumen-skill",
-    "text": "闇を切り裂け！",
-    "voice": "jf_gongitsune",
-    "seconds": 1.503,
+    "text": "きらめけ！光の刃！",
+    "voice": "VOICEVOX:四国めたん",
+    "styleId": 6,
+    "seconds": 1.493,
     "sampleRate": 24000
   },
   {
     "key": "suture",
-    "text": "大丈夫。すぐに治療する。",
-    "voice": "jf_nezumi",
-    "seconds": 2.399,
+    "text": "大丈夫！すぐに治してあげる。",
+    "voice": "VOICEVOX:雨晴はう",
+    "styleId": 10,
+    "seconds": 2.283,
     "sampleRate": 24000
   },
   {
     "key": "suture-skill",
-    "text": "まだ諦めないで！",
-    "voice": "jf_nezumi",
-    "seconds": 1.514,
+    "text": "まだまだ！私がついてるよ！",
+    "voice": "VOICEVOX:雨晴はう",
+    "styleId": 10,
+    "seconds": 2.037,
     "sampleRate": 24000
   },
   {
     "key": "victory",
-    "text": "作戦完了。全員、よくやった。",
-    "voice": "jf_alpha",
-    "seconds": 2.857,
+    "text": "やったね！みんな、お疲れさま！",
+    "voice": "VOICEVOX:四国めたん",
+    "styleId": 0,
+    "seconds": 2.549,
     "sampleRate": 24000
   }
 ]

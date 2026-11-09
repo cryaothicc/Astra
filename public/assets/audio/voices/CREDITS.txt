@@ -1,29 +1,24 @@
-SECTOR 01 — JAPANESE AI VOICE CREDITS
+SECTOR 01 — JAPANESE VOICE CREDITS
 
-Original dialogue written for this game and rendered locally with Kokoro-82M.
-These are synthetic preset voices; no Arknights audio or character voice actors were copied.
+Original game dialogue synthesized locally with VOICEVOX CORE 0.17.1.
+Character names below identify the licensed voice libraries, not these game's original operator designs.
 
-Model: hexgrad/Kokoro-82M, Apache License 2.0
-https://huggingface.co/hexgrad/Kokoro-82M
-Voice inventory and source attribution:
-https://huggingface.co/hexgrad/Kokoro-82M/blob/main/VOICES.md
+Ash: VOICEVOX:ずんだもん (sweet deployment / tsun skill)
+Lumen and command: VOICEVOX:四国めたん (normal / tsun / sweet styles)
+Kestrel: VOICEVOX:春日部つむぎ
+Suture: VOICEVOX:雨晴はう
+Bastion: VOICEVOX:玄野武宏(CV:ガロ)
 
-Ash and command: jf_alpha
-Bastion: jm_kumo; source voice data Kumonoito, Koniwa (CC BY)
-https://github.com/koniwa/koniwa/blob/master/source/tnc/tnc__kumonoito.txt
-Kestrel: jf_tebukuro; source voice data Tebukurowokaini, Koniwa (CC BY)
-https://github.com/koniwa/koniwa/blob/master/source/tnc/tnc__tebukurowokaini.txt
-Lumen: jf_gongitsune; source voice data Gongitsune, Koniwa (CC BY)
-https://github.com/koniwa/koniwa/blob/master/source/tnc/tnc__gongitsune.txt
-Suture: jf_nezumi; source voice data Nezuminoyomeiri, Koniwa (CC BY)
-https://github.com/koniwa/koniwa/blob/master/source/tnc/tnc__nezuminoyomeiri.txt
+VOICEVOX software and voice-model terms:
+https://voicevox.hiroshiba.jp/term/
+https://github.com/VOICEVOX/voicevox_vvm/blob/main/TERMS.txt
+Individual voice-library terms:
+https://zunko.jp/con_ongen_kiyaku.html
+https://tsumugi-official.studio.site/rule
+https://amehau.com/rules/amehare-hau-rule
+https://www.virvoxproject.com/voicevoxの利用規約
 
-Runtime used for offline rendering: kokoro-onnx (MIT)
-https://github.com/thewh1teagle/kokoro-onnx
-Japanese phonemization: Misaki (Apache 2.0)
-https://github.com/hexgrad/misaki
+The generated voice files remain subject to these voice-library terms.
+Anyone reusing or redistributing these files must preserve the applicable VOICEVOX character credits and comply with the linked terms; the same obligations must accompany further redistribution. These voices are synthetic, not recordings of the operators' fictional actors.
 
-Output: 24kHz mono PCM WAV; gentle peak normalization and edge fades.
-The game bundles only generated audio and license notices, not model weights.
-Exact lines, voice IDs, durations and sample rates: manifest.json.
-
+Output: 24 kHz mono PCM WAV. Script, styles, speaking speed, intonation and pauses were tailored for these lines. No runtime speech service or voice model is downloaded by the game. Exact words, voice styles and durations are in manifest.json.

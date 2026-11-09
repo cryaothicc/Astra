@@ -1,37 +1,34 @@
-# Japanese operator voices
+# Japanese operator voices — revision 2
 
-Twelve original Japanese dialogue files are now bundled under `public/assets/audio/voices/`. All five operators have deployment and skill lines; command has operation-start and victory lines. They use locally rendered Kokoro Japanese AI voices, with no browser speech fallback or live service requirement. Runway speech was unavailable on the connected plan, so no paid generation was used.
+Twelve original Japanese deployment, skill, operation-start and victory lines are bundled as 24 kHz WAV files. They now use the free VOICEVOX engine in place of Kokoro. Ash uses a sweet style for deployment and a sharper style for her skill; the other roles use their own voice assignments, expressive punctuation and per-line prosody. These are still synthesized voices; subjective naturalness is for the player to assess.
 
-The source script is `scripts/render-japanese-voices.py`. Its model, voice data, and Python dependencies stay in ignored `.sites-runtime/voice-tts/`. Run it using a Python 3.12 interpreter. It expects Kokoro v1.0 ONNX, voices-v1.0.bin, kokoro-onnx, soundfile, Misaki Japanese dependencies (the Windows-compatible pyopenjtalk fork), and unidic-lite. The generated manifest records the exact words and voice assignment.
+The reproducible renderer is `scripts/render-voicevox.py`. Official VOICEVOX CORE 0.17.1, CPU ONNX Runtime, Open JTalk dictionary and VVM 0/4 models live in ignored `.sites-runtime/voicevox/`. Only finished WAVs, the manifest, and credits are deployed. `scripts/render-japanese-voices.py` is the older Kokoro renderer and should not overwrite these files.
 
-Playback is tied to real deployment, skill, start, and victory events. A new line replaces the previous line, effects duck during speech, and the separate VO toggle controls voices. The sound control mutes all audio. No actor impersonation or franchise dialogue recordings are used.
+A new line replaces the previous line. Speech ducks combat effects. VO and subtitle toggles are independent. Every line is triggered by an actual start, deployment, skill or victory action; no browser speech synthesis is used. All twelve WAVs were decoded and their durations/sample rates checked. There is no claim of a human listening test.
 
-SECTOR 01 — JAPANESE AI VOICE CREDITS
+## Required credit and reuse
 
-Original dialogue written for this game and rendered locally with Kokoro-82M.
-These are synthetic preset voices; no Arknights audio or character voice actors were copied.
+SECTOR 01 — JAPANESE VOICE CREDITS
 
-Model: hexgrad/Kokoro-82M, Apache License 2.0
-https://huggingface.co/hexgrad/Kokoro-82M
-Voice inventory and source attribution:
-https://huggingface.co/hexgrad/Kokoro-82M/blob/main/VOICES.md
+Original game dialogue synthesized locally with VOICEVOX CORE 0.17.1.
+Character names below identify the licensed voice libraries, not these game's original operator designs.
 
-Ash and command: jf_alpha
-Bastion: jm_kumo; source voice data Kumonoito, Koniwa (CC BY)
-https://github.com/koniwa/koniwa/blob/master/source/tnc/tnc__kumonoito.txt
-Kestrel: jf_tebukuro; source voice data Tebukurowokaini, Koniwa (CC BY)
-https://github.com/koniwa/koniwa/blob/master/source/tnc/tnc__tebukurowokaini.txt
-Lumen: jf_gongitsune; source voice data Gongitsune, Koniwa (CC BY)
-https://github.com/koniwa/koniwa/blob/master/source/tnc/tnc__gongitsune.txt
-Suture: jf_nezumi; source voice data Nezuminoyomeiri, Koniwa (CC BY)
-https://github.com/koniwa/koniwa/blob/master/source/tnc/tnc__nezuminoyomeiri.txt
+Ash: VOICEVOX:ずんだもん (sweet deployment / tsun skill)
+Lumen and command: VOICEVOX:四国めたん (normal / tsun / sweet styles)
+Kestrel: VOICEVOX:春日部つむぎ
+Suture: VOICEVOX:雨晴はう
+Bastion: VOICEVOX:玄野武宏(CV:ガロ)
 
-Runtime used for offline rendering: kokoro-onnx (MIT)
-https://github.com/thewh1teagle/kokoro-onnx
-Japanese phonemization: Misaki (Apache 2.0)
-https://github.com/hexgrad/misaki
+VOICEVOX software and voice-model terms:
+https://voicevox.hiroshiba.jp/term/
+https://github.com/VOICEVOX/voicevox_vvm/blob/main/TERMS.txt
+Individual voice-library terms:
+https://zunko.jp/con_ongen_kiyaku.html
+https://tsumugi-official.studio.site/rule
+https://amehau.com/rules/amehare-hau-rule
+https://www.virvoxproject.com/voicevoxの利用規約
 
-Output: 24kHz mono PCM WAV; gentle peak normalization and edge fades.
-The game bundles only generated audio and license notices, not model weights.
-Exact lines, voice IDs, durations and sample rates: manifest.json.
+The generated voice files remain subject to these voice-library terms.
+Anyone reusing or redistributing these files must preserve the applicable VOICEVOX character credits and comply with the linked terms; the same obligations must accompany further redistribution. These voices are synthetic, not recordings of the operators' fictional actors.
 
+Output: 24 kHz mono PCM WAV. Script, styles, speaking speed, intonation and pauses were tailored for these lines. No runtime speech service or voice model is downloaded by the game. Exact words, voice styles and durations are in manifest.json.
