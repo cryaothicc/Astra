@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { Battle } from '../lib/battle.mjs';
-import { enemyFrame, unitFacing, portalOpacity, operatorFrame } from '../lib/visual-state.mjs';
+import { enemyFrame, unitFacing, portalOpacity, operatorFrame, idleMotion } from '../lib/visual-state.mjs';
 import { rangeCells, inRange, BOARD_PROJECTION } from '../lib/missions.mjs';
 
 // Facing follows the current target and remains stable through recovery.
@@ -62,6 +62,15 @@ for(let i=0;i<100;i++)audio.music('victory');assert.equal(sources.length,2);
 audio.music('menu');assert.equal(sources.length,3);audio.music('defeat');assert.equal(sources.at(-1).loop,false);
 console.log('PASS result music interrupts battle, plays once, stays silent, and resets on mission navigation.');
 
-assert.equal(operatorFrame({phase:0},0),0);assert.equal(operatorFrame({phase:0},5.65),1);assert.equal(operatorFrame({phase:0},5.81),0);
+assert.equal(operatorFrame({phase:0},0),0);assert.equal(operatorFrame({phase:0},5.65),0);assert.equal(operatorFrame({phase:0},5.81),0);
 assert.deepEqual([0,.32,.5,.7].map(time=>operatorFrame({action:{time,hitAt:.32}},0)),[2,3,4,5]);
 console.log('PASS matched operator idle/blink and anticipation/release/follow-through/recovery poses.');
+
+assert.equal(idleMotion({phase:0},5.7).blink,true);assert.equal(idleMotion({phase:0},1).blink,false);
+for(let t=0;t<12;t+=.1)assert.ok(Math.abs(idleMotion({phase:0},t).breath-1)<.005);
+assert.deepEqual(idleMotion({action:{}},1),{breath:1,blink:false});
+console.log('PASS idle keeps one body cel, eye-only blink timing and restrained breathing.');
+
+const {weaponPoint}=await import('../lib/operator-art.mjs');
+for(const type of [2,3,4]){const u={type,x:600,y:400},ref={bottom:210,top:30},frame={bottom:210};const right=weaponPoint(u,1,frame,ref),left=weaponPoint(u,-1,frame,ref);assert.equal(right.x-600,600-left.x);assert.equal(right.y,left.y);assert.ok(right.x>600);}
+console.log('PASS mirrored weapon tips share the sprite scale and foot registration.');

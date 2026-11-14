@@ -34,3 +34,9 @@ const {assaultSchedule}=await import('../lib/waves.mjs');
 for(let i=0;i<3;i++){const queue=assaultSchedule(i);assert.equal(queue.length,MISSIONS[i].total);assert.equal(queue.filter(e=>e.kind==='boss').length,1);assert.deepEqual([...new Set(queue.map(e=>e.wave))],[1,2,3]);assert.ok(queue.every(e=>e.lane<MISSIONS[i].paths.length));}
 assert.notDeepEqual(assaultSchedule(0).map(e=>e.kind),assaultSchedule(1).map(e=>e.kind));
 console.log('PASS bounded healing, range-limited medical skill and distinct deterministic assault schedules.');
+
+const blockTest=new Battle();blockTest.start();blockTest.selected=0;blockTest.deploy(blockTest.mission.tiles.find(t=>t.cell[0]===2&&t.cell[1]===1),2);
+for(let i=0;i<3;i++){blockTest.spawn();const e=blockTest.enemies.at(-1);e.p=180;Object.assign(e,pointOn(e.path,e.p));}
+blockTest.update(.01);assert.equal(blockTest.units[0].blockLoad,2);assert.equal(blockTest.enemies.filter(e=>e.blocked).length,2);assert.equal(blockTest.enemies.filter(e=>e.bypassing).length,1);
+const shotTest=new Battle();shotTest.start();shotTest.dp=99;shotTest.selected=2;shotTest.deploy(shotTest.mission.tiles.find(t=>t.high),0);shotTest.spawn();shotTest.weaponOrigin=()=>({x:456,y:234});shotTest.launch(shotTest.units[0],shotTest.enemies[0],180);assert.equal(shotTest.projectiles[0].x,456);assert.equal(shotTest.projectiles[0].y,234);
+console.log('PASS block overflow is intentional and projectile launch uses the rendered weapon origin.');

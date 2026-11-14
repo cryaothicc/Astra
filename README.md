@@ -4,11 +4,11 @@ A playable anime chibi tower-defense game inspired by the supplied concept and A
 
 ## Play
 
-1. Choose a mission and press **Begin Operation**. The battlefield starts empty; hostiles arrive after eight seconds.
+1. Choose a mission, review it, then press **Begin Operation**. The active mission’s review button becomes **Resume Operation** when returning to mission selection. The battlefield starts empty; hostiles arrive after eight seconds.
 2. Select a portrait (or press 1–5), choose a valid tile, select a facing direction, then confirm. Ground operators block roads; ranged operators and medics use raised platforms.
 3. Selection slows the simulation to quarter speed. A bright gold grid shows attack range; mint shows healing range. Q activates a charged skill. Space pauses/resumes; Escape cancels selection.
 4. DP regenerates. Retreat refunds half the deployment cost and triggers a 25-second cooldown. Defeat triggers 35 seconds; subsequent deployments cost more.
-5. Clear every hostile while keeping at least one life. No breaches earns three stars. Best mission ratings persist locally on the device.
+5. Clear every hostile while keeping at least one life. No breaches earns three stars. Best mission ratings persist locally on the device. Stars record clear quality only: three for no breaches, two for two lives remaining, one for one life. They do not unlock rewards.
 
 Use the toolbar for mission selection, route display, Japanese subtitles, Japanese voices, recorded sound effects, the manual, and fullscreen. Mobile play is landscape-only; portrait orientation pauses play and shows a rotate prompt. Fullscreen attempts orientation lock where the browser supports it. Desktop narrow panels retain a fitted landscape battlefield.
 
@@ -22,7 +22,7 @@ Use the toolbar for mission selection, route display, Japanese subtitles, Japane
 
 ## Animation and audio
 
-The high-resolution painted chibi atlases use drawn idle/blink, anticipation, attack and recovery frames in one consistent six-column atlas, registered to a fixed foot baseline. No bouncing or floating idle transform is applied. Enemy designs differ by biome. All three bosses have four-pose walks, anticipation/release/recovery attacks and four-frame collapse sequences, readable attack telegraphs and an enraged phase. The results screen waits for the boss to fall. Operators follow targets visually without changing their chosen firing arc. Projectiles, slashes, impact particles and healing effects are drawn separately from the character sprites. Red entry and blue defense floor markings align with every route endpoint. Rain, snow, mist and embers animate independently.
+The high-resolution painted chibi atlases use drawn idle/blink, anticipation, attack and recovery frames in one consistent six-column atlas, registered to a fixed foot baseline. Idle uses one stable body drawing, eye-only blink patches and subtle breathing anchored at the feet. Enemy designs differ by biome. All three bosses have four-pose walks, anticipation/release/recovery attacks and four-frame collapse sequences, readable attack telegraphs and an enraged phase. The results screen waits for the boss to fall. Operators follow targets visually without changing their chosen firing arc. Ranged projectiles originate from measured weapon tips, mirrored with the operator. Ground operators show their used block capacity; excess enemies visibly pass when it is full. Bosses have a dedicated gold BOSS badge. Projectiles, slashes, impact particles and healing effects are drawn separately from the character sprites. Red entry and blue defense floor markings align with every route endpoint. Rain, snow, mist and embers animate independently.
 
 Audio uses local licensed weapon/foley/ambient samples with level limits; see the bundled attribution files. No oscillator tones or browser speech synthesis are used. Twelve spoken Japanese AI voice lines are bundled locally: deployment and skill lines for each operator, operation start and victory. The VOICES control is independent of subtitles; effects duck under speech. The sound control mutes all audio. Dialogue was generated locally using VOICEVOX; no paid service or browser voice installation is required during play. See VOICE-ASSETS.md and the in-game voice credits for model, voice, license, and reproduction details.
 
