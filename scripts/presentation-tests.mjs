@@ -11,10 +11,10 @@ assert.equal(unitFacing(caster,{x:700}),1);
 assert.equal(unitFacing(caster,null),-1);
 for(let biome=0;biome<3;biome++){
  const boss={kind:'boss',p:0,blocked:null};
- const walk=[0,9,18,27].map(p=>enemyFrame({...boss,p},biome));
+ const walk=[0,.21,.41,.61].map(walkTime=>enemyFrame({...boss,walkTime},biome));
  assert.equal(new Set(walk.map(f=>f.col)).size,4);
  assert.ok(walk.every(f=>f.boss&&f.row===biome));
- for(const kind of ['grunt','heavy']){const walk=[0,7,14,20,27].map(p=>enemyFrame({kind,p},biome));assert.equal(new Set(walk.map(f=>`${f.transition?'extra':'base'}:${f.row}:${f.col}`)).size,5);}
+ for(const kind of ['grunt','heavy']){const walk=[0,.19,.37,.56].map(walkTime=>enemyFrame({kind,walkTime},biome));assert.equal(new Set(walk.map(f=>f.col)).size,4);assert.ok(walk.every(f=>!f.transition));}
  assert.deepEqual([0,.5,.83,1.2].map(time=>enemyFrame({...boss,action:{time,hitAt:.82}},biome).col),[4,4,5,0]);
  assert.deepEqual([2.6,2.0,1.4,.4].map(life=>enemyFrame({...boss,life,deathDuration:2.6},biome,true)),[0,1,2,3].map(col=>({row:biome,col,bossDeath:true})));
  const game=new Battle(biome);game.start();game.spawned=game.mission.total-5;game.resolved=game.mission.total-1;game.spawn();game.spawned=game.mission.total;
@@ -44,7 +44,7 @@ for(const line of manifest){
  assert.equal(bytes.subarray(0,4).toString(),'RIFF');assert.equal(bytes.subarray(8,12).toString(),'WAVE');
  assert.equal(bytes.readUInt32LE(24),24000);assert.ok(bytes.length>24000);assert.ok(line.seconds>.7&&line.seconds<5);
 }
-console.log('PASS target-facing, cohesive four-pose boss and five-pose enemy walks, attack/collapse frames, delayed victory, exact range tile agreement, gate transitions, and all 12 Japanese voice assets.');
+console.log('PASS target-facing, cohesive consistent four-pose boss and enemy walks, attack/collapse frames, delayed victory, exact range tile agreement, gate transitions, and all 12 Japanese voice assets.');
 
 const music=JSON.parse(fs.readFileSync(new URL('../public/assets/audio/music/manifest.json',import.meta.url),'utf8'));assert.equal(Object.keys(music.tracks).length,6);for(const name of ['menu','night','shrine','foundry']){const b=fs.readFileSync(new URL(`../public/assets/audio/music/${name}.ogg`,import.meta.url));assert.equal(b.subarray(0,4).toString(),'OggS');assert.ok(music.tracks[name].duration>30);}
 console.log('PASS four complete instrumental music assets.');
@@ -72,5 +72,13 @@ assert.deepEqual(idleMotion({action:{}},1),{breath:1,blink:false});
 console.log('PASS idle keeps one body cel, eye-only blink timing and restrained breathing.');
 
 const {weaponPoint}=await import('../lib/operator-art.mjs');
-for(const type of [2,3,4]){const u={type,x:600,y:400},ref={bottom:210,top:30},frame={bottom:210};const right=weaponPoint(u,1,frame,ref),left=weaponPoint(u,-1,frame,ref);assert.equal(right.x-600,600-left.x);assert.equal(right.y,left.y);assert.ok(right.x>600);}
+for(const type of [2,3,4]){const u={type,x:600,y:400},ref={bottom:210,top:30},frame={bottom:210,localPivot:100};const right=weaponPoint(u,1,frame,ref),left=weaponPoint(u,-1,frame,ref);assert.equal(right.x-600,600-left.x);assert.equal(right.y,left.y);assert.ok(right.x>600);}
 console.log('PASS mirrored weapon tips share the sprite scale and foot registration.');
+
+// Gait follows elapsed movement, pauses during attacks, and slows with frost.
+const gait=new Battle();gait.start();gait.spawn();gait.nextSpawn=Infinity;
+const walker=gait.enemies[0];gait.update(.1);assert.ok(Math.abs(walker.walkTime-.1)<1e-9);
+walker.slow=1;gait.update(.1);assert.ok(Math.abs(walker.walkTime-.145)<1e-9);
+walker.action={time:0,hitAt:1,duration:2};gait.update(.1);assert.ok(Math.abs(walker.walkTime-.145)<1e-9);
+assert.deepEqual(enemyFrame({kind:'grunt',walkTime:.3,hit:.1},0),enemyFrame({kind:'grunt',walkTime:.3,hit:0},0));
+console.log('PASS walk clocks freeze during attacks, respect slows, and do not jump into recoil on damage.');

@@ -22,7 +22,7 @@ Use the toolbar for mission selection, route display, Japanese subtitles, Japane
 
 ## Animation and audio
 
-The high-resolution painted chibi atlases use drawn idle/blink, anticipation, attack and recovery frames in one consistent six-column atlas, registered to a fixed foot baseline. Idle uses one stable body drawing, eye-only blink patches and subtle breathing anchored at the feet. Enemy designs differ by biome. All three bosses have four-pose walks, anticipation/release/recovery attacks and four-frame collapse sequences, readable attack telegraphs and an enraged phase. The results screen waits for the boss to fall. Operators follow targets visually without changing their chosen firing arc. Ranged projectiles originate from measured weapon tips, mirrored with the operator. Ground operators show their used block capacity; excess enemies visibly pass when it is full. Bosses have a dedicated gold BOSS badge. Projectiles, slashes, impact particles and healing effects are drawn separately from the character sprites. Red entry and blue defense floor markings align with every route endpoint. Rain, snow, mist and embers animate independently.
+The high-resolution painted chibi atlases use drawn idle/blink, anticipation, attack and recovery frames in one consistent six-column atlas, registered to a fixed foot baseline. Idle uses one stable body drawing, eye-only blink patches and subtle breathing anchored at the feet. Enemy designs differ by biome. All three bosses have four-pose walks, anticipation/release/recovery attacks and four-frame collapse sequences, readable attack telegraphs and an enraged phase. The results screen waits for the boss to fall. Operators follow targets visually without changing their chosen firing arc. Ranged projectiles originate from measured weapon tips, mirrored with the operator. Ground operators show their used block capacity; excess enemies visibly pass when it is full. Bosses have a dedicated gold BOSS badge. Projectiles, slashes, impact particles and healing effects are drawn separately from the character sprites. Red entry and blue defense floor markings align with every route endpoint. Rain, snow, mist and embers animate independently. Map details also move: ventilation fans, steam, rain ripples, swaying sanctuary tree canopies, and a continuous molten-metal pour with furnace ripples. The Routes ON/OFF control draws contrasting moving arrows for both lanes. Pale roads are traversable; dark tiles and shafts are blocked terrain, and raised platforms are deployed onto directly.
 
 Audio uses local licensed weapon/foley/ambient samples with level limits; see the bundled attribution files. No oscillator tones or browser speech synthesis are used. Twelve spoken Japanese AI voice lines are bundled locally: deployment and skill lines for each operator, operation start and victory. The VOICES control is independent of subtitles; effects duck under speech. The sound control mutes all audio. Dialogue was generated locally using VOICEVOX; no paid service or browser voice installation is required during play. See VOICE-ASSETS.md and the in-game voice credits for model, voice, license, and reproduction details.
 
@@ -39,6 +39,10 @@ Requires Node.js 22.13+. Uses the supplied Vinext/Vite Sites starter.
 
 Open the Local URL printed by the server.
 
+## Vercel deployment
+
+The repository keeps the existing Vercel static deployment setup. Vercel runs `npm run build:vercel`, then serves `dist/client`; `scripts/prerender.mjs` creates its `index.html` from the built Worker. The Sites Worker deployment remains supported by `npm run build`.
+
 ## Verification
 
     node scripts/tactics-tests.mjs
@@ -54,6 +58,7 @@ Tests cover empty starts, ground/high-ground restrictions, two-step placement, f
 - lib/missions.mjs — map routes, deployment tiles, operator statistics and firing arcs.
 - lib/battle.mjs — combat simulation.
 - lib/tactics.mjs — Canvas renderer, input, animation registration, particles and weather.
+- lib/environment-renderer.mjs — map-registered fans, steam, tree sway and molten-metal flow.
 - lib/audio.mjs — recorded-sample playback, Japanese voices, ducking and ambience.
 - lib/combat-renderer.mjs — gates, range previews, telegraphs and effects.
 - lib/visual-state.mjs — target-facing and animation states.
