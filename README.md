@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚔ Astra
+# Astra
 
 **A tactical tower-defense game with five operators, three battlefields, and a line worth holding.**
 
@@ -12,8 +12,7 @@
 ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Hosted_on-Vercel-000000?logo=vercel&logoColor=white)
 
-<!-- Replace this blank placeholder with your own screenshot or GIF. -->
-<img src="./docs/preview.svg" alt="" width="800" />
+<img src="./docs/preview.png" alt="" width="800" />
 
 </div>
 
