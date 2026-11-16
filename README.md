@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚔ Astra
+# Astra
 
 **A tactical tower-defense game with five operators, three battlefields, and a line worth holding.**
 
