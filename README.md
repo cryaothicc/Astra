@@ -1,70 +1,138 @@
-# Astra — Tactical Operations
+<div align="center">
 
-A playable anime chibi tower-defense game inspired by the supplied concept and Arknights-style tactical deployment. Three complete missions with empty starts, directional placement, class-specific tiles, blocking, armor, healing, skills, retreat/redeployment, and saved star ratings.
+# ⚔ Astra
 
-## Play
+**A tactical tower-defense game with five operators, three battlefields, and a line worth holding.**
 
-1. Choose a mission, review it, then press **Begin Operation**. The active mission’s review button becomes **Resume Operation** when returning to mission selection. The battlefield starts empty; hostiles arrive after eight seconds.
-2. Select a portrait (or press 1–5), choose a valid tile, select a facing direction, then confirm. Ground operators block roads; ranged operators and medics use raised platforms.
-3. Selection slows the simulation to quarter speed. A bright gold grid shows attack range; mint shows healing range. Q activates a charged skill. Space pauses/resumes; Escape cancels selection.
-4. DP regenerates. Retreat refunds half the deployment cost and triggers a 25-second cooldown. Defeat triggers 35 seconds; subsequent deployments cost more.
-5. Clear every hostile while keeping at least one life. No breaches earns three stars. Best mission ratings persist locally on the device. Stars record clear quality only: three for no breaches, two for two lives remaining, one for one life. They do not unlock rewards.
+[**Play Now →**](https://astra-iota-mocha.vercel.app/)
 
-Use the toolbar for mission selection, route display, Japanese subtitles, Japanese voices, recorded sound effects, the manual, and fullscreen. Mobile play is landscape-only; portrait orientation pauses play and shows a rotate prompt. Fullscreen attempts orientation lock where the browser supports it. Desktop narrow panels retain a fitted landscape battlefield.
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Canvas](https://img.shields.io/badge/Canvas_2D-F7DF1E?logo=javascript&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![Vercel](https://img.shields.io/badge/Hosted_on-Vercel-000000?logo=vercel&logoColor=white)
+
+<!-- Replace this blank placeholder with your own screenshot or GIF. -->
+<img src="./docs/preview.svg" alt="" width="800" />
+
+</div>
+
+---
+
+## Overview
+
+Start with an empty battlefield. Spend deployment points to place your squad, choose their facing, and stop enemies from reaching the blue defense points. Placement, armor, block capacity, healing coverage, and skill timing all matter.
+
+Astra runs in the browser with React and Canvas 2D. Art, music, effects, and Japanese operator dialogue are bundled with the game. There is no account system or gameplay backend.
+
+## Features
+
+- Five operators with distinct roles, directional ranges, and active skills
+- Three missions with different routes, enemy formations, bosses, and hazards
+- Chibi character animation, weapon effects, and visible block counters
+- Moving furnace fire, molten metal, smoke, embers, rain, snow, and ventilation fans
+- Tactical pause, two-speed combat, retreat, and redeployment
+- Instrumental music, combat sound effects, Japanese dialogue, and English captions
+- Saved mission ratings and a mission-select screen with assault forecasts
+- Desktop and landscape mobile play
+
+## Operators
+
+| Operator | Role | Specialty |
+| --- | --- | --- |
+| Ash | Vanguard | Blocks 2; generates extra DP with her skill |
+| Bastion | Defender | Blocks 3; heals himself and reduces damage with Iron Fortress |
+| Kestrel | Sniper | Long-range bolts and a five-target salvo |
+| Lumen | Caster | Armor-piercing splash damage and a slowing nova |
+| Suture | Medic | Heals injured allies within her selected range |
 
 ## Missions
 
-| Operation | Enemies | Route and environment | Boss |
-|---|---:|---|---|
-| Nightwatch | 32 | Rainy loading yard, two routes converge | The Warden, armored knight with enraged phase |
-| Pale Sanctuary | 36 | Frozen shrine, opposing entries and periodic whiteouts | Frost Revenant, frost pulses slow nearby operators |
-| Cinder Works | 40 | Split foundry lanes, two defense points and furnace eruptions | Cinder Titan, hammer attacks splash nearby operators |
+| Operation | Hostiles | Tactical focus |
+| --- | ---: | --- |
+| Nightwatch | 32 | Two approaches merge at a shared bend |
+| Pale Sanctuary | 36 | Opposing entries, whiteouts, and frost pulses |
+| Cinder Works | 40 | Two exits, armored escorts, and timed furnace vents |
 
-## Animation and audio
+Turn **Routes** on to see each enemy approach. Visible service walkways can be scenery; enemies follow the marked routes. Raised platforms are deployment positions for ranged operators, not enemy roads.
 
-The high-resolution painted chibi atlases use drawn idle/blink, anticipation, attack and recovery frames in one consistent six-column atlas, registered to a fixed foot baseline. Idle uses one stable body drawing, eye-only blink patches and subtle breathing anchored at the feet. Enemy designs differ by biome. All three bosses have four-pose walks, anticipation/release/recovery attacks and four-frame collapse sequences, readable attack telegraphs and an enraged phase. The results screen waits for the boss to fall. Operators follow targets visually without changing their chosen firing arc. Ranged projectiles originate from measured weapon tips, mirrored with the operator. Ground operators show their used block capacity; excess enemies visibly pass when it is full. Bosses have a dedicated gold BOSS badge. Projectiles, slashes, impact particles and healing effects are drawn separately from the character sprites. Red entry and blue defense floor markings align with every route endpoint. Rain, snow, mist and embers animate independently. Map details also move: ventilation fans, steam, rain ripples, swaying sanctuary tree canopies, and a continuous molten-metal pour with furnace ripples. The Routes ON/OFF control draws contrasting moving arrows for both lanes. Pale roads are traversable; dark tiles and shafts are blocked terrain, and raised platforms are deployed onto directly.
+## Controls
 
-Audio uses local licensed weapon/foley/ambient samples with level limits; see the bundled attribution files. No oscillator tones or browser speech synthesis are used. Twelve spoken Japanese AI voice lines are bundled locally: deployment and skill lines for each operator, operation start and victory. The VOICES control is independent of subtitles; effects duck under speech. The sound control mutes all audio. Dialogue was generated locally using VOICEVOX; no paid service or browser voice installation is required during play. See VOICE-ASSETS.md and the in-game voice credits for model, voice, license, and reproduction details.
+| Input | Action |
+| --- | --- |
+| Mouse / touch | Select an operator, select a tile, choose a facing, and confirm |
+| **1–5** | Select an operator |
+| **W A S D** / **Arrow keys** | Set facing during placement |
+| **Enter** | Confirm placement |
+| **Q** | Activate the selected operator’s charged skill |
+| **Space** | Pause / resume |
+| **Escape** | Cancel placement or selection; otherwise pause |
+| Toolbar | Toggle routes, captions, voices, music, sound, or fullscreen |
 
-Each stage has 3 lives and a 5-operator limit. Limited DP, armor, block costs, split routes and active skills make deployment order and timing matter. Each stage uses a distinct authored assault schedule, shown before deployment. Suture heals 135 HP every 1.9 seconds; the 650 HP medical skill only affects allies in range and charges over 38 seconds. Foundry vents deal 280 damage to operators and 550 Arts damage to enemies, allowing timed hazard tactics.
+### Deployment and blocking
 
-Battle music: “Nightfall”, “Tears of a Distant Sun” and “The Encounter” by Scott Buckley, released under CC-BY 4.0: https://www.scottbuckley.com.au. Menu music: “The Restoration” by Scott Buckley (CC-BY 4.0); result cues by FiftySounds. Full source links, changes and licenses are in `public/assets/audio/music/CREDITS.txt`. Victory and defeat immediately stop battle music, play one result cue, then remain silent.
+Selection slows combat to quarter speed. Gold tiles show attack range; mint tiles show healing range. Ground operators use roads, while ranged operators and medics deploy directly onto raised platforms.
 
-## Development
+Normal enemies consume 1 block, armored enemies 2, and bosses 3. Enemies that exceed an operator’s capacity pass through; this is intentional. Use Bastion to hold bosses and support him with damage and healing.
 
-Requires Node.js 22.13+. Uses the supplied Vinext/Vite Sites starter.
+Retreat refunds half the DP cost and starts a 25-second cooldown. Defeated operators need 35 seconds. Redeploying costs more DP. Foundry vents damage both allies and enemies.
 
-    npm ci
-    npm run dev
+### Mobile
 
-Open the Local URL printed by the server.
+Play in **landscape**. Portrait orientation pauses combat and shows a rotation prompt. Fullscreen requests orientation lock when the browser supports it.
 
-## Vercel deployment
+## Run Locally
 
-The repository keeps the existing Vercel static deployment setup. Vercel runs `npm run build:vercel`, then serves `dist/client`; `scripts/prerender.mjs` creates its `index.html` from the built Worker. The Sites Worker deployment remains supported by `npm run build`.
+Requires **Node.js 22.13 or newer**.
 
-## Verification
+```bash
+npm ci
+npm run dev
+```
 
-    node scripts/tactics-tests.mjs
-    node scripts/presentation-tests.mjs
-    node node_modules/typescript/bin/tsc --noEmit
-    npm run build
+Open the local URL printed in the terminal, normally [http://127.0.0.1:5173/](http://127.0.0.1:5173/).
 
-Tests cover empty starts, ground/high-ground restrictions, two-step placement, facing arcs, deployment cost and cooldowns, pause, retreat, projectile damage on impact, defeat, healing, skills, boss encounters, hazards, full wins on all three missions, and clean restarts. Presentation tests also verify exact range agreement, animation states and one-shot result music transitions.
+## Saves and Progress
 
-## Project files
+Best mission ratings are saved in the browser’s `localStorage`. Three stars means no breaches, two means two lives remaining, and one means one life remaining. Stars record your best result; they do not unlock rewards.
 
-- components/TacticalGame.tsx — HUD, roster, mission selection, briefing, manual and result screens.
-- lib/missions.mjs — map routes, deployment tiles, operator statistics and firing arcs.
-- lib/battle.mjs — combat simulation.
-- lib/tactics.mjs — Canvas renderer, input, animation registration, particles and weather.
-- lib/environment-renderer.mjs — map-registered fans, steam, tree sway and molten-metal flow.
-- lib/audio.mjs — recorded-sample playback, Japanese voices, ducking and ambience.
-- lib/combat-renderer.mjs — gates, range previews, telegraphs and effects.
-- lib/visual-state.mjs — target-facing and animation states.
-- public/assets — all map, operator, enemy, boss, portrait and audio assets used in play.
-- MAP-PROMPTS.md, REVISION-ASSET-PROMPTS.md — built-in image generation briefs.
-- AUDIO-ASSETS.md, VOICE-ASSETS.md — audio provenance, licenses and delivered voice scripts.
-- COMBAT-ASSET-PROMPTS.md — final operator and boss sprite generation prompts.
+**Resume Operation** returns to the current battle while the page remains open. Reloading starts a new session. Ratings belong to the site address and browser profile, so local and hosted saves are separate. Existing ratings remain compatible.
 
-This is a three-mission browser game with original generated battle art and the supplied portrait artwork. It does not include the full commercial Arknights campaign, progression, collection system or original game's voice recordings.
+## How It Works
+
+- `components/` — mission selection, briefing, HUD, roster, and result screens
+- `lib/battle.mjs` — combat, deployment, blocking, skills, and projectiles
+- `lib/missions.mjs` / `lib/waves.mjs` — terrain, ranges, routes, and assault schedules
+- `lib/tactics.mjs` — rendering, sprite registration, controls, and effects
+- `lib/environment-renderer.mjs` / `lib/weather.mjs` — scenery movement and weather particles
+- `lib/audio.mjs` — music, voices, effects, and volume ducking
+- `public/assets/` — artwork, audio, and asset licenses
+
+## Testing
+
+```bash
+npm test
+npm run build
+```
+
+Tests cover deployment restrictions, facing, blocking, cooldowns, healing, projectile timing, boss encounters, hazards, wins on all three missions, animation states, weather motion, and result music. Winning simulations use deliberate formations and skill timing.
+
+## Deployment
+
+The game is hosted on [Vercel](https://astra-iota-mocha.vercel.app/). Its existing deployment contract is retained:
+
+- **Build command:** `npm run build:vercel`
+- **Output directory:** `dist/client`
+
+Vite produces a complete static site, including `index.html`; a server prerender step is no longer needed. To host it elsewhere, serve `dist/client` as a static website.
+
+```bash
+npm run build:vercel
+npm run preview
+```
+
+## Credits and Licenses
+
+Music by **Scott Buckley** and **FiftySounds**. Sound effects include work by **Kenney**, **Will Leamon**, and **ViRiX Dreamcore**. Japanese voice libraries are credited to **VOICEVOX** and their respective creators.
+
+See [asset credits](./CREDITS.md) for attribution and license links. Preserve the bundled credits and license files when redistributing the game or its assets.

@@ -82,3 +82,15 @@ walker.slow=1;gait.update(.1);assert.ok(Math.abs(walker.walkTime-.145)<1e-9);
 walker.action={time:0,hitAt:1,duration:2};gait.update(.1);assert.ok(Math.abs(walker.walkTime-.145)<1e-9);
 assert.deepEqual(enemyFrame({kind:'grunt',walkTime:.3,hit:.1},0),enemyFrame({kind:'grunt',walkTime:.3,hit:0},0));
 console.log('PASS walk clocks freeze during attacks, respect slows, and do not jump into recoil on damage.');
+
+const {WeatherField}=await import('../lib/weather.mjs');
+for(const kind of ['rain','snow']){
+ const weather=new WeatherField(kind);weather.update(.016);
+ assert.ok(new Set(weather.particles.map(p=>Math.round(p.vy))).size>20,'particles need varied fall speeds');
+ const before=weather.particles.map(p=>[p.x,p.y]);weather.update(0);
+ assert.deepEqual(weather.particles.map(p=>[p.x,p.y]),before,'paused weather stays still');
+ for(let i=0;i<7200;i++)weather.update(1/60,i<3600);
+ assert.ok(weather.particles.every(p=>Number.isFinite(p.x+p.y)&&p.x>=-40&&p.x<=1715&&p.y>=40&&p.y<=745));
+ assert.ok(weather.whiteout<.001,'whiteout fades away after the gust');
+}
+console.log('PASS independent weather speeds, paused particles, bounded long-running motion and smooth whiteout recovery.');

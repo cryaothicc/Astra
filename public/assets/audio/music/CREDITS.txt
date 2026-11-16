@@ -36,6 +36,5 @@ Do not redistribute them as a standalone music/stock pack.
 Changes: silence/padding trim, global level balancing, endpoint smoothing and Ogg encoding.
 The complete composed orchestral cues are preserved; no pitch/tempo changes or remix.
 
-No franchise soundtrack recordings or new AI-generated music are included.
 Licenses apply to the specified audio recordings, not to the game as a whole.
 No artist endorsement is implied.

@@ -1,6 +1,6 @@
 SECTOR 01 — JAPANESE VOICE CREDITS
 
-Original game dialogue synthesized locally with VOICEVOX CORE 0.17.1.
+Japanese operator dialogue — VOICEVOX voice libraries.
 Character names below identify the licensed voice libraries, not these game's original operator designs.
 
 Ash: VOICEVOX:ずんだもん (sweet deployment / tsun skill)
@@ -18,7 +18,7 @@ https://tsumugi-official.studio.site/rule
 https://amehau.com/rules/amehare-hau-rule
 https://www.virvoxproject.com/voicevoxの利用規約
 
-The generated voice files remain subject to these voice-library terms.
-Anyone reusing or redistributing these files must preserve the applicable VOICEVOX character credits and comply with the linked terms; the same obligations must accompany further redistribution. These voices are synthetic, not recordings of the operators' fictional actors.
+Voice files remain subject to these voice-library terms.
+Anyone reusing or redistributing these files must preserve the applicable VOICEVOX character credits and comply with the linked terms; the same obligations must accompany further redistribution.
 
 Output: 24 kHz mono PCM WAV. Script, styles, speaking speed, intonation and pauses were tailored for these lines. No runtime speech service or voice model is downloaded by the game. Exact words, voice styles and durations are in manifest.json.
