@@ -30,7 +30,7 @@ Astra runs in the browser with React and Canvas 2D. Art, music, effects, and Jap
 - Five operators with distinct roles, directional ranges, and active skills
 - Three missions with different routes, enemy formations, bosses, and hazards
 - Chibi character animation, weapon effects, and visible block counters
-- Moving furnace fire, molten metal, smoke, embers, rain, snow, and ventilation fans
+- Flowing molten metal, rising embers, rain, snow, steam vents, and ventilation fans
 - Tactical pause, two-speed combat, retreat, and redeployment
 - Instrumental music, combat sound effects, Japanese dialogue, and English captions
 - Saved mission ratings and a mission-select screen with assault forecasts
