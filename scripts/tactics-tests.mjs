@@ -41,18 +41,23 @@ blockTest.update(.01);assert.equal(blockTest.units[0].blockLoad,2);assert.equal(
 const shotTest=new Battle();shotTest.start();shotTest.dp=99;shotTest.selected=2;shotTest.deploy(shotTest.mission.tiles.find(t=>t.high),0);shotTest.spawn();shotTest.weaponOrigin=()=>({x:456,y:234});shotTest.launch(shotTest.units[0],shotTest.enemies[0],180);assert.equal(shotTest.projectiles[0].x,456);assert.equal(shotTest.projectiles[0].y,234);
 console.log('PASS block overflow is intentional and projectile launch uses the rendered weapon origin.');
 
-// Titan must visibly swing even when Ash cannot supply its three block slots.
-for(const type of [0,1]){
- const titanBattle=new Battle(2);titanBattle.start();titanBattle.dp=99;titanBattle.selected=type;
- const tile=titanBattle.mission.tiles.find(t=>t.cell[0]===2&&t.cell[1]===1&&!t.high);
- assert.ok(titanBattle.deploy(tile,2));
- titanBattle.spawned=titanBattle.schedule.findIndex(e=>e.kind==='boss');titanBattle.spawn();titanBattle.nextSpawn=Infinity;
- const titan=titanBattle.enemies[0],unit=titanBattle.units[0];
- const {projectOn}=await import('../lib/missions.mjs');
- titan.p=projectOn(titan.path,unit.x,unit.y).distance-40;Object.assign(titan,pointOn(titan.path,titan.p));titan.cd=0;
- titanBattle.update(.01);assert.equal(titan.action?.target,unit.id);assert.equal(titan.blocked,type===1?unit.id:null);
- const before=unit.hp,position=titan.p;let slammed=false;
- for(let i=0;i<60;i++){titanBattle.update(1/60);slammed ||= titanBattle.events.some(e=>e.type==='slam');}
- assert.ok(unit.hp<before,'Titan hammer damages nearby ground operator');assert.ok(slammed,'Titan emits hammer impact');assert.equal(titan.p,position,'Titan stops walking through its attack windup');
+
+// Every boss attacks ground operators, with and without enough block capacity.
+const {projectOn}=await import('../lib/missions.mjs');
+for(const mission of MISSIONS)for(const type of [0,1]){
+ const fight=new Battle(mission.id);fight.start();fight.dp=99;
+ fight.spawned=fight.schedule.findIndex(e=>e.kind==='boss');fight.spawn();fight.nextSpawn=Infinity;
+ const boss=fight.enemies[0];
+ const tile=fight.mission.tiles.find(t=>!t.high&&projectOn(boss.path,t.x,t.y).offset<1&&projectOn(boss.path,t.x,t.y).distance>150);
+ fight.selected=type;assert.ok(fight.deploy(tile,2));const unit=fight.units[0];
+ boss.p=projectOn(boss.path,unit.x,unit.y).distance-40;Object.assign(boss,pointOn(boss.path,boss.p));boss.cd=0;
+ fight.update(.01);assert.equal(boss.action?.target,unit.id);assert.equal(boss.blocked,type===1?unit.id:null);
+ const before=unit.hp,position=boss.p;
+ for(let i=0;i<60;i++)fight.update(1/60);
+ assert.ok(unit.hp<before,`${mission.name} boss damages operator`);
+ assert.ok(fight.events.some(e=>e.type==='enemyAttack'&&e.boss));
+ assert.equal(boss.p,position,'Boss stops walking throughout the attack windup');
+ if(mission.id===2)assert.ok(fight.events.some(e=>e.type==='slam'));
+ if(mission.id===1){boss.action=null;boss.bossCd=0;const hp=unit.hp;for(let i=0;i<65;i++)fight.update(1/60);assert.ok(fight.events.some(e=>e.type==='nova'));assert.ok(unit.hp<hp);assert.ok(unit.slow>0,'Frost pulse still applies slow');}
 }
-console.log('PASS Cinder Titan attacks both unblocking vanguards and blocking defenders.');
+console.log('PASS all three bosses attack both vanguards and defenders; frost pulse and hammer impact preserved.');
