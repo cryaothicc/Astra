@@ -40,3 +40,19 @@ for(let i=0;i<3;i++){blockTest.spawn();const e=blockTest.enemies.at(-1);e.p=180;
 blockTest.update(.01);assert.equal(blockTest.units[0].blockLoad,2);assert.equal(blockTest.enemies.filter(e=>e.blocked).length,2);assert.equal(blockTest.enemies.filter(e=>e.bypassing).length,1);
 const shotTest=new Battle();shotTest.start();shotTest.dp=99;shotTest.selected=2;shotTest.deploy(shotTest.mission.tiles.find(t=>t.high),0);shotTest.spawn();shotTest.weaponOrigin=()=>({x:456,y:234});shotTest.launch(shotTest.units[0],shotTest.enemies[0],180);assert.equal(shotTest.projectiles[0].x,456);assert.equal(shotTest.projectiles[0].y,234);
 console.log('PASS block overflow is intentional and projectile launch uses the rendered weapon origin.');
+
+// Titan must visibly swing even when Ash cannot supply its three block slots.
+for(const type of [0,1]){
+ const titanBattle=new Battle(2);titanBattle.start();titanBattle.dp=99;titanBattle.selected=type;
+ const tile=titanBattle.mission.tiles.find(t=>t.cell[0]===2&&t.cell[1]===1&&!t.high);
+ assert.ok(titanBattle.deploy(tile,2));
+ titanBattle.spawned=titanBattle.schedule.findIndex(e=>e.kind==='boss');titanBattle.spawn();titanBattle.nextSpawn=Infinity;
+ const titan=titanBattle.enemies[0],unit=titanBattle.units[0];
+ const {projectOn}=await import('../lib/missions.mjs');
+ titan.p=projectOn(titan.path,unit.x,unit.y).distance-40;Object.assign(titan,pointOn(titan.path,titan.p));titan.cd=0;
+ titanBattle.update(.01);assert.equal(titan.action?.target,unit.id);assert.equal(titan.blocked,type===1?unit.id:null);
+ const before=unit.hp,position=titan.p;let slammed=false;
+ for(let i=0;i<60;i++){titanBattle.update(1/60);slammed ||= titanBattle.events.some(e=>e.type==='slam');}
+ assert.ok(unit.hp<before,'Titan hammer damages nearby ground operator');assert.ok(slammed,'Titan emits hammer impact');assert.equal(titan.p,position,'Titan stops walking through its attack windup');
+}
+console.log('PASS Cinder Titan attacks both unblocking vanguards and blocking defenders.');
